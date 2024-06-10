@@ -1,0 +1,649 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="db_serenity_spaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tb_citas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClienteId" Type="int" />
+          <Property Name="HorarioId" Type="int" />
+          <Property Name="Fecha" Type="date" Nullable="false" />
+          <Property Name="Motivo" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Estado" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tb_clientes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Identificacion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Apellido" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="UsuarioId" Type="int" />
+          <Property Name="FechaNacimiento" Type="date" Nullable="false" />
+          <Property Name="Direccion" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="tb_especialidades">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_horarios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TerapeutaId" Type="int" />
+          <Property Name="SalonId" Type="int" />
+          <Property Name="DiaSemana" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="HoraInicio" Type="time" Precision="7" Nullable="false" />
+          <Property Name="HoraFin" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_reservas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClienteId" Type="int" />
+          <Property Name="ServicioId" Type="int" />
+          <Property Name="Fecha" Type="date" Nullable="false" />
+          <Property Name="Hora" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Estado" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tb_salones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Direccion" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tb_servicios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="tb_terapeutas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Apellido" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="UsuarioId" Type="int" />
+          <Property Name="EspecialidadId" Type="int" />
+        </EntityType>
+        <EntityType Name="tb_usuarios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Usuario" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Contraseña" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Rol" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__tb_citas__Client__07C12930">
+          <End Role="tb_clientes" Type="Self.tb_clientes" Multiplicity="0..1" />
+          <End Role="tb_citas" Type="Self.tb_citas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_clientes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_citas">
+              <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_citas__Horari__08B54D69">
+          <End Role="tb_horarios" Type="Self.tb_horarios" Multiplicity="0..1" />
+          <End Role="tb_citas" Type="Self.tb_citas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_horarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_citas">
+              <PropertyRef Name="HorarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_client__Usuar__7A672E12">
+          <End Role="tb_usuarios" Type="Self.tb_usuarios" Multiplicity="0..1" />
+          <End Role="tb_clientes" Type="Self.tb_clientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_clientes">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_horari__Salon__7E37BEF6">
+          <End Role="tb_salones" Type="Self.tb_salones" Multiplicity="0..1" />
+          <End Role="tb_horarios" Type="Self.tb_horarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_salones">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_horarios">
+              <PropertyRef Name="SalonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_horari__Terap__7D439ABD">
+          <End Role="tb_terapeutas" Type="Self.tb_terapeutas" Multiplicity="0..1" />
+          <End Role="tb_horarios" Type="Self.tb_horarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_terapeutas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_horarios">
+              <PropertyRef Name="TerapeutaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_reserv__Clien__02FC7413">
+          <End Role="tb_clientes" Type="Self.tb_clientes" Multiplicity="0..1" />
+          <End Role="tb_reservas" Type="Self.tb_reservas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_clientes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_reservas">
+              <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_reserv__Servi__03F0984C">
+          <End Role="tb_servicios" Type="Self.tb_servicios" Multiplicity="0..1" />
+          <End Role="tb_reservas" Type="Self.tb_reservas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_servicios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_reservas">
+              <PropertyRef Name="ServicioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_terape__Espec__778AC167">
+          <End Role="tb_especialidades" Type="Self.tb_especialidades" Multiplicity="0..1" />
+          <End Role="tb_terapeutas" Type="Self.tb_terapeutas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_especialidades">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_terapeutas">
+              <PropertyRef Name="EspecialidadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_terape__Usuar__76969D2E">
+          <End Role="tb_usuarios" Type="Self.tb_usuarios" Multiplicity="0..1" />
+          <End Role="tb_terapeutas" Type="Self.tb_terapeutas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_terapeutas">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_serenity_spaModelStoreContainer">
+          <EntitySet Name="tb_citas" EntityType="Self.tb_citas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_clientes" EntityType="Self.tb_clientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_especialidades" EntityType="Self.tb_especialidades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_horarios" EntityType="Self.tb_horarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_reservas" EntityType="Self.tb_reservas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_salones" EntityType="Self.tb_salones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_servicios" EntityType="Self.tb_servicios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_terapeutas" EntityType="Self.tb_terapeutas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_usuarios" EntityType="Self.tb_usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tb_citas__Client__07C12930" Association="Self.FK__tb_citas__Client__07C12930">
+            <End Role="tb_clientes" EntitySet="tb_clientes" />
+            <End Role="tb_citas" EntitySet="tb_citas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_citas__Horari__08B54D69" Association="Self.FK__tb_citas__Horari__08B54D69">
+            <End Role="tb_horarios" EntitySet="tb_horarios" />
+            <End Role="tb_citas" EntitySet="tb_citas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_client__Usuar__7A672E12" Association="Self.FK__tb_client__Usuar__7A672E12">
+            <End Role="tb_usuarios" EntitySet="tb_usuarios" />
+            <End Role="tb_clientes" EntitySet="tb_clientes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_horari__Salon__7E37BEF6" Association="Self.FK__tb_horari__Salon__7E37BEF6">
+            <End Role="tb_salones" EntitySet="tb_salones" />
+            <End Role="tb_horarios" EntitySet="tb_horarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_horari__Terap__7D439ABD" Association="Self.FK__tb_horari__Terap__7D439ABD">
+            <End Role="tb_terapeutas" EntitySet="tb_terapeutas" />
+            <End Role="tb_horarios" EntitySet="tb_horarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_reserv__Clien__02FC7413" Association="Self.FK__tb_reserv__Clien__02FC7413">
+            <End Role="tb_clientes" EntitySet="tb_clientes" />
+            <End Role="tb_reservas" EntitySet="tb_reservas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_reserv__Servi__03F0984C" Association="Self.FK__tb_reserv__Servi__03F0984C">
+            <End Role="tb_servicios" EntitySet="tb_servicios" />
+            <End Role="tb_reservas" EntitySet="tb_reservas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_terape__Espec__778AC167" Association="Self.FK__tb_terape__Espec__778AC167">
+            <End Role="tb_especialidades" EntitySet="tb_especialidades" />
+            <End Role="tb_terapeutas" EntitySet="tb_terapeutas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_terape__Usuar__76969D2E" Association="Self.FK__tb_terape__Usuar__76969D2E">
+            <End Role="tb_usuarios" EntitySet="tb_usuarios" />
+            <End Role="tb_terapeutas" EntitySet="tb_terapeutas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db_serenity_spaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tb_citas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClienteId" Type="Int32" />
+          <Property Name="HorarioId" Type="Int32" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Motivo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tb_clientes" Relationship="Self.FK__tb_citas__Client__07C12930" FromRole="tb_citas" ToRole="tb_clientes" />
+          <NavigationProperty Name="tb_horarios" Relationship="Self.FK__tb_citas__Horari__08B54D69" FromRole="tb_citas" ToRole="tb_horarios" />
+        </EntityType>
+        <EntityType Name="tb_clientes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Identificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UsuarioId" Type="Int32" />
+          <Property Name="FechaNacimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Direccion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tb_citas" Relationship="Self.FK__tb_citas__Client__07C12930" FromRole="tb_clientes" ToRole="tb_citas" />
+          <NavigationProperty Name="tb_usuarios" Relationship="Self.FK__tb_client__Usuar__7A672E12" FromRole="tb_clientes" ToRole="tb_usuarios" />
+          <NavigationProperty Name="tb_reservas" Relationship="Self.FK__tb_reserv__Clien__02FC7413" FromRole="tb_clientes" ToRole="tb_reservas" />
+        </EntityType>
+        <EntityType Name="tb_especialidades">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tb_terapeutas" Relationship="Self.FK__tb_terape__Espec__778AC167" FromRole="tb_especialidades" ToRole="tb_terapeutas" />
+        </EntityType>
+        <EntityType Name="tb_horarios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TerapeutaId" Type="Int32" />
+          <Property Name="SalonId" Type="Int32" />
+          <Property Name="DiaSemana" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HoraInicio" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="HoraFin" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="tb_citas" Relationship="Self.FK__tb_citas__Horari__08B54D69" FromRole="tb_horarios" ToRole="tb_citas" />
+          <NavigationProperty Name="tb_salones" Relationship="Self.FK__tb_horari__Salon__7E37BEF6" FromRole="tb_horarios" ToRole="tb_salones" />
+          <NavigationProperty Name="tb_terapeutas" Relationship="Self.FK__tb_horari__Terap__7D439ABD" FromRole="tb_horarios" ToRole="tb_terapeutas" />
+        </EntityType>
+        <EntityType Name="tb_reservas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClienteId" Type="Int32" />
+          <Property Name="ServicioId" Type="Int32" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Hora" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tb_clientes" Relationship="Self.FK__tb_reserv__Clien__02FC7413" FromRole="tb_reservas" ToRole="tb_clientes" />
+          <NavigationProperty Name="tb_servicios" Relationship="Self.FK__tb_reserv__Servi__03F0984C" FromRole="tb_reservas" ToRole="tb_servicios" />
+        </EntityType>
+        <EntityType Name="tb_salones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tb_horarios" Relationship="Self.FK__tb_horari__Salon__7E37BEF6" FromRole="tb_salones" ToRole="tb_horarios" />
+        </EntityType>
+        <EntityType Name="tb_servicios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tb_reservas" Relationship="Self.FK__tb_reserv__Servi__03F0984C" FromRole="tb_servicios" ToRole="tb_reservas" />
+        </EntityType>
+        <EntityType Name="tb_terapeutas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UsuarioId" Type="Int32" />
+          <Property Name="EspecialidadId" Type="Int32" />
+          <NavigationProperty Name="tb_especialidades" Relationship="Self.FK__tb_terape__Espec__778AC167" FromRole="tb_terapeutas" ToRole="tb_especialidades" />
+          <NavigationProperty Name="tb_horarios" Relationship="Self.FK__tb_horari__Terap__7D439ABD" FromRole="tb_terapeutas" ToRole="tb_horarios" />
+          <NavigationProperty Name="tb_usuarios" Relationship="Self.FK__tb_terape__Usuar__76969D2E" FromRole="tb_terapeutas" ToRole="tb_usuarios" />
+        </EntityType>
+        <EntityType Name="tb_usuarios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Contraseña" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Rol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tb_clientes" Relationship="Self.FK__tb_client__Usuar__7A672E12" FromRole="tb_usuarios" ToRole="tb_clientes" />
+          <NavigationProperty Name="tb_terapeutas" Relationship="Self.FK__tb_terape__Usuar__76969D2E" FromRole="tb_usuarios" ToRole="tb_terapeutas" />
+        </EntityType>
+        <Association Name="FK__tb_citas__Client__07C12930">
+          <End Role="tb_clientes" Type="Self.tb_clientes" Multiplicity="0..1" />
+          <End Role="tb_citas" Type="Self.tb_citas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_clientes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_citas">
+              <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_citas__Horari__08B54D69">
+          <End Role="tb_horarios" Type="Self.tb_horarios" Multiplicity="0..1" />
+          <End Role="tb_citas" Type="Self.tb_citas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_horarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_citas">
+              <PropertyRef Name="HorarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_client__Usuar__7A672E12">
+          <End Role="tb_usuarios" Type="Self.tb_usuarios" Multiplicity="0..1" />
+          <End Role="tb_clientes" Type="Self.tb_clientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_clientes">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_reserv__Clien__02FC7413">
+          <End Role="tb_clientes" Type="Self.tb_clientes" Multiplicity="0..1" />
+          <End Role="tb_reservas" Type="Self.tb_reservas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_clientes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_reservas">
+              <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_terape__Espec__778AC167">
+          <End Role="tb_especialidades" Type="Self.tb_especialidades" Multiplicity="0..1" />
+          <End Role="tb_terapeutas" Type="Self.tb_terapeutas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_especialidades">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_terapeutas">
+              <PropertyRef Name="EspecialidadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_horari__Salon__7E37BEF6">
+          <End Role="tb_salones" Type="Self.tb_salones" Multiplicity="0..1" />
+          <End Role="tb_horarios" Type="Self.tb_horarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_salones">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_horarios">
+              <PropertyRef Name="SalonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_horari__Terap__7D439ABD">
+          <End Role="tb_terapeutas" Type="Self.tb_terapeutas" Multiplicity="0..1" />
+          <End Role="tb_horarios" Type="Self.tb_horarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_terapeutas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_horarios">
+              <PropertyRef Name="TerapeutaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_reserv__Servi__03F0984C">
+          <End Role="tb_servicios" Type="Self.tb_servicios" Multiplicity="0..1" />
+          <End Role="tb_reservas" Type="Self.tb_reservas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_servicios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_reservas">
+              <PropertyRef Name="ServicioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_terape__Usuar__76969D2E">
+          <End Role="tb_usuarios" Type="Self.tb_usuarios" Multiplicity="0..1" />
+          <End Role="tb_terapeutas" Type="Self.tb_terapeutas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tb_terapeutas">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_serenity_spaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tb_citas" EntityType="Self.tb_citas" />
+          <EntitySet Name="tb_clientes" EntityType="Self.tb_clientes" />
+          <EntitySet Name="tb_especialidades" EntityType="Self.tb_especialidades" />
+          <EntitySet Name="tb_horarios" EntityType="Self.tb_horarios" />
+          <EntitySet Name="tb_reservas" EntityType="Self.tb_reservas" />
+          <EntitySet Name="tb_salones" EntityType="Self.tb_salones" />
+          <EntitySet Name="tb_servicios" EntityType="Self.tb_servicios" />
+          <EntitySet Name="tb_terapeutas" EntityType="Self.tb_terapeutas" />
+          <EntitySet Name="tb_usuarios" EntityType="Self.tb_usuarios" />
+          <AssociationSet Name="FK__tb_citas__Client__07C12930" Association="Self.FK__tb_citas__Client__07C12930">
+            <End Role="tb_clientes" EntitySet="tb_clientes" />
+            <End Role="tb_citas" EntitySet="tb_citas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_citas__Horari__08B54D69" Association="Self.FK__tb_citas__Horari__08B54D69">
+            <End Role="tb_horarios" EntitySet="tb_horarios" />
+            <End Role="tb_citas" EntitySet="tb_citas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_client__Usuar__7A672E12" Association="Self.FK__tb_client__Usuar__7A672E12">
+            <End Role="tb_usuarios" EntitySet="tb_usuarios" />
+            <End Role="tb_clientes" EntitySet="tb_clientes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_reserv__Clien__02FC7413" Association="Self.FK__tb_reserv__Clien__02FC7413">
+            <End Role="tb_clientes" EntitySet="tb_clientes" />
+            <End Role="tb_reservas" EntitySet="tb_reservas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_terape__Espec__778AC167" Association="Self.FK__tb_terape__Espec__778AC167">
+            <End Role="tb_especialidades" EntitySet="tb_especialidades" />
+            <End Role="tb_terapeutas" EntitySet="tb_terapeutas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_horari__Salon__7E37BEF6" Association="Self.FK__tb_horari__Salon__7E37BEF6">
+            <End Role="tb_salones" EntitySet="tb_salones" />
+            <End Role="tb_horarios" EntitySet="tb_horarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_horari__Terap__7D439ABD" Association="Self.FK__tb_horari__Terap__7D439ABD">
+            <End Role="tb_terapeutas" EntitySet="tb_terapeutas" />
+            <End Role="tb_horarios" EntitySet="tb_horarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_reserv__Servi__03F0984C" Association="Self.FK__tb_reserv__Servi__03F0984C">
+            <End Role="tb_servicios" EntitySet="tb_servicios" />
+            <End Role="tb_reservas" EntitySet="tb_reservas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_terape__Usuar__76969D2E" Association="Self.FK__tb_terape__Usuar__76969D2E">
+            <End Role="tb_usuarios" EntitySet="tb_usuarios" />
+            <End Role="tb_terapeutas" EntitySet="tb_terapeutas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="db_serenity_spaModelStoreContainer" CdmEntityContainer="db_serenity_spaEntities">
+          <EntitySetMapping Name="tb_citas">
+            <EntityTypeMapping TypeName="db_serenity_spaModel.tb_citas">
+              <MappingFragment StoreEntitySet="tb_citas">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+                <ScalarProperty Name="HorarioId" ColumnName="HorarioId" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Motivo" ColumnName="Motivo" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_clientes">
+            <EntityTypeMapping TypeName="db_serenity_spaModel.tb_clientes">
+              <MappingFragment StoreEntitySet="tb_clientes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_especialidades">
+            <EntityTypeMapping TypeName="db_serenity_spaModel.tb_especialidades">
+              <MappingFragment StoreEntitySet="tb_especialidades">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_horarios">
+            <EntityTypeMapping TypeName="db_serenity_spaModel.tb_horarios">
+              <MappingFragment StoreEntitySet="tb_horarios">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TerapeutaId" ColumnName="TerapeutaId" />
+                <ScalarProperty Name="SalonId" ColumnName="SalonId" />
+                <ScalarProperty Name="DiaSemana" ColumnName="DiaSemana" />
+                <ScalarProperty Name="HoraInicio" ColumnName="HoraInicio" />
+                <ScalarProperty Name="HoraFin" ColumnName="HoraFin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_reservas">
+            <EntityTypeMapping TypeName="db_serenity_spaModel.tb_reservas">
+              <MappingFragment StoreEntitySet="tb_reservas">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+                <ScalarProperty Name="ServicioId" ColumnName="ServicioId" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Hora" ColumnName="Hora" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_salones">
+            <EntityTypeMapping TypeName="db_serenity_spaModel.tb_salones">
+              <MappingFragment StoreEntitySet="tb_salones">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_servicios">
+            <EntityTypeMapping TypeName="db_serenity_spaModel.tb_servicios">
+              <MappingFragment StoreEntitySet="tb_servicios">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_terapeutas">
+            <EntityTypeMapping TypeName="db_serenity_spaModel.tb_terapeutas">
+              <MappingFragment StoreEntitySet="tb_terapeutas">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+                <ScalarProperty Name="EspecialidadId" ColumnName="EspecialidadId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_usuarios">
+            <EntityTypeMapping TypeName="db_serenity_spaModel.tb_usuarios">
+              <MappingFragment StoreEntitySet="tb_usuarios">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+                <ScalarProperty Name="Rol" ColumnName="Rol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="813c07f1e4de49b09c2f4d2c7541cac5" Name="Diagram1">
+        <EntityTypeShape EntityType="db_serenity_spaModel.tb_citas" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_serenity_spaModel.tb_clientes" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_serenity_spaModel.tb_especialidades" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_serenity_spaModel.tb_horarios" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_serenity_spaModel.tb_reservas" Width="1.5" PointX="8.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_serenity_spaModel.tb_salones" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_serenity_spaModel.tb_servicios" Width="1.5" PointX="6" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_serenity_spaModel.tb_terapeutas" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_serenity_spaModel.tb_usuarios" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="db_serenity_spaModel.FK__tb_citas__Client__07C12930" ManuallyRouted="false" />
+        <AssociationConnector Association="db_serenity_spaModel.FK__tb_citas__Horari__08B54D69" ManuallyRouted="false" />
+        <AssociationConnector Association="db_serenity_spaModel.FK__tb_client__Usuar__7A672E12" ManuallyRouted="false" />
+        <AssociationConnector Association="db_serenity_spaModel.FK__tb_reserv__Clien__02FC7413" ManuallyRouted="false" />
+        <AssociationConnector Association="db_serenity_spaModel.FK__tb_terape__Espec__778AC167" ManuallyRouted="false" />
+        <AssociationConnector Association="db_serenity_spaModel.FK__tb_horari__Salon__7E37BEF6" ManuallyRouted="false" />
+        <AssociationConnector Association="db_serenity_spaModel.FK__tb_horari__Terap__7D439ABD" ManuallyRouted="false" />
+        <AssociationConnector Association="db_serenity_spaModel.FK__tb_reserv__Servi__03F0984C" ManuallyRouted="false" />
+        <AssociationConnector Association="db_serenity_spaModel.FK__tb_terape__Usuar__76969D2E" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
