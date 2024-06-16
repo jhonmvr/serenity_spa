@@ -94,5 +94,10 @@
       <Name>Servicio</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ControladorAplicacion\" />
+    <Folder Include="Formulario\" />
+    <Folder Include="VistaModelo\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

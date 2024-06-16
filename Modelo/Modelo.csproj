@@ -41,6 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstraciones\IBaseRepository.cs" />
+    <Compile Include="Abstraciones\IClientesRepository.cs" />
+    <Compile Include="Abstraciones\IUsuariosRepository.cs" />
+    <Compile Include="Abstraciones\ITerapeutasRepository.cs" />
+    <Compile Include="Abstraciones\IServiciosRepository.cs" />
+    <Compile Include="Abstraciones\ISalonesRepository.cs" />
+    <Compile Include="Abstraciones\IReservasRepository.cs" />
+    <Compile Include="Abstraciones\IHorariosRepository.cs" />
+    <Compile Include="Abstraciones\IEspecialidadesRepository.cs" />
+    <Compile Include="Abstraciones\ICitasRepository.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Entidades\SerenitySpaModel.cs">
       <AutoGen>True</AutoGen>
@@ -86,7 +96,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Abstraciones\" />
     <Folder Include="ObjetosValor\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

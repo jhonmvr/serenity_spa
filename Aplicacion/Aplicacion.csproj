@@ -43,6 +43,16 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Servicio\BaseService.cs" />
+    <Compile Include="Servicio\CitasService.cs" />
+    <Compile Include="Servicio\EspecialidadesService.cs" />
+    <Compile Include="Servicio\HorariosService.cs" />
+    <Compile Include="Servicio\ReservasService.cs" />
+    <Compile Include="Servicio\SalonesService.cs" />
+    <Compile Include="Servicio\ServiciosService.cs" />
+    <Compile Include="Servicio\TerapeutasService.cs" />
+    <Compile Include="Servicio\UsuariosService.cs" />
+    <Compile Include="Servicio\ClientesService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AccesoDatos\AccesoDatos.csproj">
@@ -70,5 +80,6 @@
       <Name>Servicio</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

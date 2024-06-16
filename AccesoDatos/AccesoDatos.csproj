@@ -52,6 +52,16 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\imp\BaseRepository.cs" />
+    <Compile Include="Repository\imp\EspecialidadesRepository.cs" />
+    <Compile Include="Repository\imp\HorariosRepository.cs" />
+    <Compile Include="Repository\imp\ReservasRepository.cs" />
+    <Compile Include="Repository\imp\SalonesRepository.cs" />
+    <Compile Include="Repository\imp\ServiciosRepository.cs" />
+    <Compile Include="Repository\imp\UsuariosRepository.cs" />
+    <Compile Include="Repository\imp\TerapeutasRepository.cs" />
+    <Compile Include="Repository\imp\CitasRepository.cs" />
+    <Compile Include="Repository\imp\ClienteRepository.cs" />
     <Compile Include="SerenitySpaModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
